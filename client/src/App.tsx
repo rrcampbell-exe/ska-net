@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [userInput, setUserInput] = useState('')
+  const [content, setContent] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -11,7 +11,7 @@ function App() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ userInput })
+      body: JSON.stringify({ content })
     })
     const data = await response.json()
     console.log(data)
@@ -22,8 +22,8 @@ function App() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           placeholder="Enter your message"
         />
         <button type="submit">Send</button>
