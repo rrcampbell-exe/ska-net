@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "A Node API for servicing ska-net.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "build": "tsc",
     "test": "test",
-    "start": "node index.js"
+    "start": "npm run build && nodemon dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,11 @@
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
     "dotenv": "^16.4.7",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "typescript": "^5.7.3"
   }
 }
