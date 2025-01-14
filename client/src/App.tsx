@@ -3,12 +3,12 @@ import parse from 'html-react-parser'
 import './App.css'
 
 function App() {
-  const [content, setContent] = useState('')
-  const [response, setResponse] = useState(null)
-  const [isFormHidden, setIsFormHidden] = useState(false)
-  const [isResponseHidden, setIsResponseHidden] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [hasError, setHasError] = useState(false)
+  const [content, setContent] = useState<string>('')
+  const [response, setResponse] = useState<any>(null)
+  const [isFormHidden, setIsFormHidden] = useState<boolean>(false)
+  const [isResponseHidden, setIsResponseHidden] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [hasError, setHasError] = useState<boolean>(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -16,7 +16,7 @@ function App() {
       setIsFormHidden(true)
       setIsLoading(true)
       setIsResponseHidden(false)
-      const response = await fetch('http://localhost:9173/api/v1/chat', {
+      const response: Response = await fetch('http://localhost:9173/api/v1/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
