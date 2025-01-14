@@ -1,42 +1,70 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  width: 20em;
+  height: calc(20em * 0.648148); 
+  margin: 7rem 0 0 0;
+  @media (max-width: 600px) {
+    margin: 3rem 0 0 0;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.response-and-form-box {
+  flex-grow: 1;
+  @media (max-width: 350px) {
+    margin: 0 1rem;
   }
 }
 
-.card {
-  padding: 2em;
+.response-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.5s ease-out;
+  margin: 0 auto;
+  max-width: 60%;
+  text-align: left;
+  margin-bottom: 5rem;
+  p {
+    margin-top: 0;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+.response-container.hidden {
+  opacity: 0;
+}
+
+.response, .error {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.75;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  textarea {
+    padding: 0.6rem 0.2rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    border-color: #ff0000;
+    transition: border-color 0.25s;
+    font-family: "Orbitron", serif;
+    letter-spacing: 0.1rem;
+    height: 5rem;
+  }
 }
