@@ -9,6 +9,7 @@ function App() {
   const [isResponseHidden, setIsResponseHidden] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [hasError, setHasError] = useState<boolean>(false)
+  const [statusCode, setStatusCode] = useState<number>(0)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -26,6 +27,8 @@ function App() {
 
       if (!response.ok) {
         const errorData = await response.json()
+        if (response.status === 429) setStatusCode(429)
+        if (response.status === 500) setStatusCode(500)
         throw new Error(errorData.error)
       }
 
@@ -61,10 +64,12 @@ function App() {
         {hasError &&
           <div className='error'>
             <p>Sorry, kiddo, but I've been skanking way too hard.</p>
-            <p>Try again later.</p>
-            <button onClick={handleNewQuestion}>
-              Pick it up!
-            </button>
+            {statusCode === 500 ? <p>Try again.</p> : <p>Give me a few hours to recover.</p>}
+            {statusCode === 500 &&
+              <button onClick={handleNewQuestion}>
+                Pick it up!
+              </button>
+            }
           </div>
         }
         {response &&

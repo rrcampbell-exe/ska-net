@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
+import rateLimiter from '../middleware/rateLimit.js'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -37,6 +38,8 @@ const skankInit = async (url: string, userPrompt: string) => {
     throw error
   }
 }
+
+router.use('/', rateLimiter)
 
 router.post(
   '/',
