@@ -1,6 +1,11 @@
 import { Router, Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
+import rateLimiter from '../middleware/rateLimit.js'
 import dotenv from 'dotenv'
+
+// TODO: add vercel.json configs for both client and server
+// TODO: add a README.md file to the root of the project
+// TODO: update production URL in client/src/App.tsx
 
 dotenv.config()
  
@@ -37,6 +42,8 @@ const skankInit = async (url: string, userPrompt: string) => {
     throw error
   }
 }
+
+router.use('/', rateLimiter)
 
 router.post(
   '/',
